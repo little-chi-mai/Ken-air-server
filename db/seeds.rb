@@ -19,6 +19,13 @@ f3 = Flight.create :flight_number => 'KA003', :origin => 'Brisbane', :destinatio
 f4 = Flight.create :flight_number => 'KA004', :origin => 'Perth', :destination => 'Darwin', :date => '2021-02-14'
 puts "#{Flight.count} flights created"
 
+FlightReservation.destroy_all
+r1 = FlightReservation.create :seat_id => 'A1'
+r2 = FlightReservation.create :seat_id => 'A2'
+r3 = FlightReservation.create :seat_id => 'A3'
+r4 = FlightReservation.create :seat_id => 'A4'
+puts "#{FlightReservation.count} reservations created"
+
 # Associations
 puts "Airplanes and Flights"
 a1.flights << f1
@@ -31,3 +38,15 @@ u1.flights << f1 << f2
 u2.flights << f2 << f3
 u3.flights << f3 << f4
 u4.flights << f4 << f1
+
+puts "FlightReservations and Users"
+u1.flight_reservations << r1
+u2.flight_reservations << r2
+u3.flight_reservations << r3
+u4.flight_reservations << r4
+
+puts "FlightReservations and Flights"
+f1.flight_reservations << r1
+f2.flight_reservations << r2
+f3.flight_reservations << r3
+f4.flight_reservations << r4
